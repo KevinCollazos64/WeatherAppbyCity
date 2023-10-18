@@ -13,7 +13,7 @@ class GetWeather:
         self.report(self.key)
 
     def report(self, key):
-        api_key = "94fd6163437d7e2917266d7f9f6e11c8"
+        api_key = ""
         lat, lon = self.coder.converter(key)
         response = requests.get(f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}")
         #if response.status_code == 200:

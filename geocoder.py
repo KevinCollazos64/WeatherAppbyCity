@@ -8,7 +8,7 @@ class Geocoder:
 
     def converter(self, code):
         code_for_api = code.replace(" ", "%20")
-        api_key = "94fd6163437d7e2917266d7f9f6e11c8"
+        api_key = ""
         limit = 5
         response = requests.get(f'http://api.openweathermap.org/geo/1.0/direct?q={code_for_api}&limit={limit}&appid={api_key}')
         if response.status_code == 200:
