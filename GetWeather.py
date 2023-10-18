@@ -1,10 +1,11 @@
 import geocoder as geo
 import requests
 
+
 class GetWeather:
     def __init__(self):
         while True:
-            self.key = input("Input city name or zip code: ")
+            self.key = input("Input city name: ")
             if isinstance(self.key, str) or isinstance(self.key, int):
                 break
             else:
@@ -14,14 +15,14 @@ class GetWeather:
 
     def report(self, key):
         api_key = ""
-        lat, lon = self.coder.converter(key)
-        response = requests.get(f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}")
-        #if response.status_code == 200:
-            #data = response.json()
-            #for k, v in data:
-             #   print(k, v)
+        lat, lon, state, country = self.coder.converter(key)
+        response = requests.get(f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}&units=metric")
+        if response.status_code == 200:
+            data = response.json()
+            main, wind, clouds = data['main'], data['wind'], data['clouds']
+            print(f"{self.key.capitalize()}, {state} {country}:\n🌡:️{main}\n💨:{wind}\n☁:{clouds}")
 
 
-sample = GetWeather()
+
 
 
